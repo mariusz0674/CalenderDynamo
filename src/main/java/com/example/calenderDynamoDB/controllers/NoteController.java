@@ -16,26 +16,26 @@ public class NoteController {
 
     @GetMapping(path = "/getAll")
     public List<Note> getAllNotes(){
-        return noteRepository.findAllNotes();
+        return noteRepository.findAll();
     }
 
     @GetMapping(value = "/user:{user_id}")
     public List<Note> findAllUserNotes(@PathVariable(value = "user_id")String userId){
-        return noteRepository.findAllNotesByUserId(userId);
+        return noteRepository.findAllByUserId(userId);
     }
 
     @GetMapping(value = "/user:{user_id}/note:{note_id}")
     public Note findNoteUserNote(@PathVariable(value = "user_id") String user_id, @PathVariable(value = "note_id") String note_id){
-        return noteRepository.findNoteUserNote( user_id,  note_id);
+        return noteRepository.findByUserIdAndObjectId( user_id,  note_id).get(0);
     }
     @PostMapping
     public Note saveNote(@RequestBody Note note){
-        return noteRepository.saveNote(note);
+        return noteRepository.save(note);
     }
 
     @PutMapping
     public Note updateNote(@RequestBody Note note){
-        return noteRepository.updateNote(note);
+        return noteRepository.update(note);
     }
 
 
