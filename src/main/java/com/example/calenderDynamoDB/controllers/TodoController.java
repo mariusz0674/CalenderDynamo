@@ -16,32 +16,32 @@ public class TodoController {
 
     @GetMapping
     public List<Todo> findAllTodos(){
-        return todoRepository.findByUserIdTodoIdTodo("1", "1");
+        return todoRepository.findByUserIdAndObjectId("1", "1");
     }
 
     @PostMapping
     public Todo save(@RequestBody Todo todo){
-        return todoRepository.saveTodo(todo);
+        return todoRepository.save(todo);
     }
 
     @PutMapping
     public Todo update(@RequestBody Todo todo){
-        return todoRepository.updateTodo(todo);
+        return todoRepository.update(todo);
     }
 
     @DeleteMapping(value = {"/{user_id}/{todo_id}"})
     public String delete(@PathVariable(value = "user_id") String user_id, @PathVariable(value = "todo_id") String todo_id){
-        return todoRepository.deleteTodo( user_id,  todo_id);
+        return todoRepository.delete( user_id,  todo_id);
     }
 
     @GetMapping(value = "/user:{user_id}/todo:{todo_id}")
     public List<Todo> findUserTodo(@PathVariable(value = "user_id") String user_id, @PathVariable(value = "todo_id") String todo_id){
-        return todoRepository.findByUserIdTodoIdTodo( user_id,  todo_id);
+        return todoRepository.findByUserIdAndObjectId( user_id,  todo_id);
     }
 
     @GetMapping(value = "/user:{user_id}/date:{date}")
     public List<Todo> finfByUserDate(@PathVariable(value = "user_id") String userId, @PathVariable(value = "date") String date){
-        return todoRepository.finfByUserDate( userId,  date);
+        return todoRepository.findByUserIdAndDate( userId,  date);
     }
 
     @GetMapping(value = "/user:{user_id}")

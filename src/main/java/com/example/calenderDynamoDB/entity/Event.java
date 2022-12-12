@@ -15,8 +15,8 @@ public class Event {
     private String event_id;
     @DynamoDBAttribute(attributeName = "details")
     private String details;
-    @DynamoDBAttribute(attributeName = "dsc")
-    private String dsc;
+    @DynamoDBAttribute(attributeName = "description")
+    private String description;
     @DynamoDBAttribute(attributeName = "date")
     private String date;
     @DynamoDBAttribute(attributeName = "time")

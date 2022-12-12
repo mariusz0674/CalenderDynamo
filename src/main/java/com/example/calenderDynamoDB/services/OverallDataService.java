@@ -20,7 +20,7 @@ public class OverallDataService {
         Overall overallReply = new Overall();
         overallReply.setUser_id(userId);
         overallReply.setEventList(eventsRepository.findAllByUserId(userId));
-        overallReply.setNoteList(noteRepository.findAllNotesByUserId(userId));
+        overallReply.setNoteList(noteRepository.findAllByUserId(userId));
         overallReply.setTodoList(todoRepository.findAllByUserId(userId));
         return overallReply;
     }

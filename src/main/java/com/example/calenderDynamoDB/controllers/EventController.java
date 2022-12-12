@@ -17,7 +17,7 @@ public class EventController {
 
     @GetMapping(path = "/getAll")
     public List<Event> getAllNotes(){
-        return eventsRepository.findAllNotes();
+        return eventsRepository.findAll();
     }
 
     @GetMapping(value = "/user:{user_id}")
@@ -27,20 +27,20 @@ public class EventController {
 
     @GetMapping(value = "/user:{user_id}/event:{event_id}")
     public List<Event> findNoteUserEvent(@PathVariable(value = "user_id") String user_id, @PathVariable(value = "event_id") String note_id){
-        return eventsRepository.findByUserIdEventId( user_id,  note_id);
+        return eventsRepository.findByUserIdAndObjectId( user_id,  note_id);
     }
     @PostMapping
     public Event saveEvent(@RequestBody Event event){
-        return eventsRepository.saveEvent(event);
+        return eventsRepository.save(event);
     }
 
     @PutMapping
     public Event updateEvent(@RequestBody Event event){
-        return eventsRepository.updateEvent(event);
+        return eventsRepository.update(event);
     }
 
     @GetMapping(value = "/user:{user_id}/date:{date}")
     public List<Event> finfByUserDate(@PathVariable(value = "user_id") String userId, @PathVariable(value = "date") String date){
-        return eventsRepository.findByUserDate( userId,  date);
+        return eventsRepository.findByUserIdAndDate( userId,  date);
     }
 }
