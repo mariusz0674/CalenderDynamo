@@ -21,7 +21,7 @@ public abstract class StandardRepository<T> implements IRepository<T>{
 
     protected StandardRepository(Class<T> typeParameterClass) {
         this.typeParameterClass = typeParameterClass;
-        className= typeParameterClass.getName().toLowerCase(Locale.ROOT);
+        className= typeParameterClass.getSimpleName().toLowerCase(Locale.ROOT);
     }
 
     @Override
@@ -75,6 +75,6 @@ public abstract class StandardRepository<T> implements IRepository<T>{
         Map<String, AttributeValue> eav = new HashMap<>();
         eav.put(":val1", new AttributeValue().withS(userId));
         eav.put(":val2", new AttributeValue().withS(date));
-        return dynamoDBMapper.query(typeParameterClass, new DynamoDBQueryExpression<T>().withKeyConditionExpression("user_id = :val1 and begins_with ("+className+", :val2)").withExpressionAttributeValues(eav));
+        return dynamoDBMapper.query(typeParameterClass, new DynamoDBQueryExpression<T>().withKeyConditionExpression("user_id = :val1 and begins_with ("+className+"_id, :val2)").withExpressionAttributeValues(eav));
     }
 }
